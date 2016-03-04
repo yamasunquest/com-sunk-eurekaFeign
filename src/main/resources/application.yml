@@ -1,0 +1,22 @@
+---
+server:
+  port: 8083
+
+eurekaService-user:
+  ribbon:
+    DeploymentContextBasedVipAddresses: com-sunk-springCloud-eurekaService-user
+    NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
+    ReadTimeout: 5000
+    MaxAutoRetries: 2
+    
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://172.28.189.123:8761/eureka/
