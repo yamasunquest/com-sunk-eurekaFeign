@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,11 +36,12 @@ public class UserController {
      * */
     @RequestMapping("/")
     public String hello() {
-/*    	List<ServiceInstance> list = discoveryClient.getInstances("eurekaService-user");
+    	
+    	List<ServiceInstance> list = discoveryClient.getInstances("eurekaService-user");
         if (list != null && list.size() > 0 ) {
             System.out.println(list.get(0).getUri());
         }
-        
+        /*   
 	DynamicServerListLoadBalancer lb = (DynamicServerListLoadBalancer) ClientFactory.getNamedLoadBalancer("eurekaService-user");  
 	RandomRule randomRule = new RandomRule();  
 	Server randomAlgorithmServer = randomRule.choose(lb, null);*/
